@@ -1,0 +1,111 @@
+header {
+  height: 10vh;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header h1 {
+  font-size: 30px;
+  line-height: 10vh;
+}
+
+header ul {
+  display: flex;
+}
+
+header li {
+  list-style: none;
+  line-height: 10vh;
+  margin-left: 20px;
+}
+
+.face {
+  width: 40px;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+
+header a {
+  color: black;
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+  line-height: 50px;
+}
+
+main {
+  padding: 0 20px;
+}
+
+.nav {
+  background-color: antiquewhite;
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav li {
+  list-style: none;
+  margin-left: 30px;
+  line-height: 60px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.search {
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  width: 100%;
+}
+
+.data:nth-child(odd) {
+  background-color: #eee;
+}
+
+th {
+  line-height: 30px;
+  /* width: 14%; */
+}
+
+.opinion-h {
+  width: 400px;
+}
+
+td {
+  border-top: 1px solid black;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.opinion {
+  text-align: left;
+  max-width: 400px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.opinion:hover {
+  text-align: left;
+  max-width: 400px;
+  white-space: normal;
+  text-overflow: clip;
+  overflow: visible;
+}

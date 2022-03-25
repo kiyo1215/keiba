@@ -1,0 +1,45 @@
+header {
+  height: 10vh;
+  padding-left: 30px;
+}
+
+header h1 {
+  font-size: 30px;
+  line-height: 10vh;
+}
+
+main {
+  position: relative;
+  height: 85vh;
+  background-color: #eee;
+}
+
+.login {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: lightblue;
+  padding: 30px;
+}
+.login h2 {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.login input{
+  margin-bottom: 20px;
+  width: 250px;
+  height: 20px;
+}
+.login button {
+  display: block;
+  margin: 0 auto 20px;
+  background-color: white;
+  cursor: pointer;
+}
+
+main a {
+  display: block;
+  text-align: center;
+}

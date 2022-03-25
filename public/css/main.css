@@ -1,0 +1,112 @@
+header {
+  height: 10vh;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header h1 {
+  font-size: 30px;
+  line-height: 10vh;
+}
+
+header ul {
+  display: flex;
+}
+
+header li {
+  list-style: none;
+  line-height: 10vh;
+  margin-left: 20px;
+}
+
+
+.face {
+  width: 40px;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+
+.nav {
+  background-color: antiquewhite;
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav li {
+  list-style: none;
+  margin-left: 30px;
+  line-height: 60px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.logout {
+  background-color: antiquewhite;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.main-image {
+  background-color: lightcoral;
+  width: 100%;
+  height: 70vh;
+}
+
+.predict {
+  height: 50px;
+  padding: 10px 0;
+}
+
+.predict a {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+  color: white;
+  border-radius: 25px;
+  font-size: 30px;
+  text-decoration: none;
+  background-color: blue;
+}
+
+.contents {
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contents_item {
+  height: 500px;
+  width: 30%;
+  background-color: #06c;
+}
+
+.contents_item h2 {
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.contents_item li {
+  list-style: none;
+  color: white;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  overflow: hidden;
+}
+
+footer {
+  height: 100px;
+}
