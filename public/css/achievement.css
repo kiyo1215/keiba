@@ -74,5 +74,19 @@ main {
 button {
   margin-left: 30px;
 }
+.result {
+  display: flex;
+}
+.year {
+  margin-right: 30px;
+}
+td {
+  display: inline-block;
+  margin: 7px 0;
+}
+.rate {
+  width: 100px;
+  text-align: right;
+}
 
 

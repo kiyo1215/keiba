@@ -69,6 +69,7 @@ main {
 
 table {
   width: 100%;
+  background-color: aquamarine;
 }
 
 tr {
@@ -81,7 +82,6 @@ tr {
 
 th {
   line-height: 30px;
-  /* width: 14%; */
 }
 
 .opinion-h {

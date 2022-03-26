@@ -60,6 +60,21 @@ class HorseController extends Controller
         }
         return view('keiba.history', compact('datas'));
     }
+    public function showUpdate($id){
+        $datas = Horse::find($id);
+        return view('keiba.update', compact('datas'));
+    }
+    public function storeUpdate(Request $request){
+        Horse::where('id', $request->id)->update([
+            'date' => $request->date,
+            'race' => $request->race,
+            'name' => $request->name,
+            'mark' => $request->mark,
+            'opinion' => $request->opinion
+        ]);
+        $datas = Horse::where('user_id', Auth::id())->get();
+        return view('keiba.history', compact('datas'));
+    }
     public function look(){
         $datas = Horse::all();
         return view('keiba.look', compact('datas'));

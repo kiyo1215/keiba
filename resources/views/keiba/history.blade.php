@@ -43,6 +43,7 @@
         <th>印</th>
         <th>馬名</th>
         <th class="opinion-h">印の理由</th>
+        <th></th>
       </tr>
       @foreach($datas as $data)
       <tr class="data">
@@ -65,6 +66,9 @@
         </td>
         <td>{{ $data->name }}</td>
         <td class="opinion">{{ $data->opinion }}</td>
+        <td>
+          <a href="/history/update/{{$data->id}}">編集</a>
+        </td>
       </tr>
       @endforeach
     </table>

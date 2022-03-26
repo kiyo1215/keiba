@@ -47,30 +47,46 @@
         <button type="submit">保存する</button>
       </div>
     </form>
-    <p>
-      @php
-        foreach($years as $year){
-          $date = $year->year;
-          $bet = $year->bet;
-          $refund = $year->refund;
-          $result = round($refund / $bet * 100, 2);
-          echo "$date ";
-          echo "$result% ";
-        }
-      @endphp
-    </p>
-    <p>
-      @php
-        foreach($datas as $data){
-          $date = $data->date;
-          $bet = $data->bet;
-          $refund = $data->refund;
-          $result = round($refund / $bet * 100, 2);
-          echo "$date ";
-          echo "$result% ";
-          }
-      @endphp
-    </p>
+    <div class="result">
+      <div class="year">
+        <table>
+          <tr>
+            <th>年間回収率</th>
+            <th></th>
+          </tr>
+          <tr>
+            @foreach($years as $year)
+            <td>{{$year->year}}</td>
+            <td class="rate">
+              @php
+              echo round($year->refund / $year->bet * 100, 2);
+              @endphp
+              %
+            </td>
+            @endforeach
+          </tr>
+        </table>
+      </div>
+      <div class="month">
+        <table>
+          <tr>
+            <th>月間回収率</th>
+            <th></th>
+          </tr>
+          @foreach($datas as $data)
+          <tr>
+            <td>{{$data->date}}</td>
+            <td class="rate">
+              @php
+              echo round($data->refund / $data->bet * 100, 2);
+              @endphp
+              %
+            </td>
+          </tr>
+          @endforeach
+        </table>
+      </div>
+    </div>
   </main>
   <footer>
 

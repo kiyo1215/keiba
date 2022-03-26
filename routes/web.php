@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/predict', [HorseController::class, 'predict'])->name('predict');
     Route::post('/predict', [HorseController::class, 'predictCreate'])->name('predictCreate');
     Route::get('/history', [HorseController::class, 'history'])->name('history');
+    Route::get('/history/update/{id}', [HorseController::class, 'showUpdate'])->name('showUpdate');
+    Route::post('/history/update', [HorseController::class, 'storeUpdate'])->name('storeUpdate');
     Route::post('/search_history', [HorseController::class, 'search_history'])->name('search_history');
     Route::get('/look', [HorseController::class, 'look'])->name('look');
     Route::post('/search_look', [HorseController::class, 'search_look'])->name('search_look');
