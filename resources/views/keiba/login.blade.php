@@ -3,21 +3,22 @@
 
 <head>
   <meta charset="utf-8">
-  <title>競馬SNS(仮)</title>
+  <title>競馬予想記録</title>
   <link rel="stylesheet" href="{{asset('css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('css/color.css')}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv=" X-UA-Compatible" content="ie=edge">
 </head>
 
 <body>
-  <header>
-    <h1>競馬SNS(仮)</h1>
+  <header class="main_color">
+    <h1>競馬予想記録</h1>
   </header>
-  <main>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+  <main class="base_color">
+    <x-auth-session-status :status="session('status')" />
 
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    <x-auth-validation-errors :errors="$errors" />
     <div class="login">
       <h2>ログイン</h2>
       <form method="POST" action="/login">

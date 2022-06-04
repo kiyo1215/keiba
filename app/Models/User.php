@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Horse;
 use App\Models\Recovery;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -48,5 +49,9 @@ class User extends Authenticatable
     }
     public function recovery(){
         return $this->hasMany(Recovery::class);
+    }
+    public function likes()
+    {
+        return $this->belongsToMany(Like::class)->withTimestamps();
     }
 }

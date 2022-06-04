@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HorseController;
 use App\Http\Controllers\RecoveryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +26,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/history/update', [HorseController::class, 'storeUpdate'])->name('storeUpdate');
     Route::post('/search_history', [HorseController::class, 'search_history'])->name('search_history');
     Route::get('/look', [HorseController::class, 'look'])->name('look');
+    Route::get('/look/show/{id}', [HorseController::class, 'show'])->name('show');
+
     Route::post('/search_look', [HorseController::class, 'search_look'])->name('search_look');
+
     Route::get('/achievement', [RecoveryController::class, 'achievement'])->name('achievement');
     Route::post('/achievement/create', [RecoveryController::class, 'achieveCreate'])->name('achieveCreate');
+
+    Route::get('/user', [UserController::class, 'showUser'])->name('showUser');
+
+    Route::post('/horse/{id}/like', [LikeController::class, 'like'])->name('like');
+    Route::post('/horse/{id}/notlike', [LikeController::class, 'notlike'])->name('notlike');
 });
 
 require __DIR__.'/auth.php';

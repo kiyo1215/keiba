@@ -1,15 +1,31 @@
 @props(['errors'])
 
 @if ($errors->any())
-    <div {{ $attributes }}>
-        <div class="font-medium text-red-600">
-            {{ __('Whoops! Something went wrong.') }}
-        </div>
-
-        <ul class="mt-3 list-disc list-inside text-sm text-red-600">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<div {{ $attributes }}>
+    <div class="text-red text-center attributes">
+        {{ __('エラー内容を確認してください') }}
     </div>
+
+    <ul class="text-red text-center">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
+
+<style>
+    .text-red {
+        color: red;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .attributes {
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 30px;
+    }
+</style>

@@ -1,57 +1,30 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-  <meta charset="utf-8">
-  <title>競馬SNS(仮)</title>
-  <link rel="stylesheet" href="{{asset('css/reset.css')}}">
-  <link rel="stylesheet" href="{{asset('css/achievement.css')}}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv=" X-UA-Compatible" content="ie=edge">
-</head>
-
-<body>
-  <header>
-    <h1>競馬SNS(仮)</h1>
-    <ul>
-      <li>{{ Auth::user()->name }}</li>
-      <li class="face"></li>
-    </ul>
-  </header>
-  <div class="nav">
-    <ul>
-      <li><a href="{{route('home')}}">トップへ</a></li>
-      <li><a href="{{route('history')}}">予想履歴</a></li>
-      <li><a href="{{route('look')}}">予想を見る</a></li>
-      <li><a href="{{route('predict')}}">予想する</a></li>
-      <li><a href="{{route('achievement')}}">年間回収率</a></li>
-    </ul>
-  </div>
+<x-main>
   <main>
-    <form method="post" action="{{route('achieveCreate')}}">
+    <h2 class="text-center py-8 text-2xl">回収率({{$today}})</h2>
+    <form method="post" action="{{route('achieveCreate')}}" class="bg-white p-8 mb-8 rounded-3xl">
       @csrf
-      <div class="field">
-        <p>賭け金</p>
-        <input type="number" name="bet">円
+      <div class="flex mb-4 h-8">
+        <p class="w-24">賭け金</p>
+        <input type="number" name="bet" class="border border-black bg-gray-100 p-1">円
       </div>
-      <div class="field">
-        <p>払い戻し金</p>
-        <input type="number" name="refund">円
+      <div class="flex mb-4 h-8">
+        <p class="w-24">払い戻し金</p>
+        <input type="number" name="refund" class="border border-black bg-gray-100 p-1">円
         <button type="button" onclick="calc(
           bet.value,
-          refund.value);">計算する</button>
+          refund.value);" class="text-white accsent_color p-1 ml-4">計算する</button>
       </div>
-      <div class="field">
-        <p>回収率</p>
-        <input type="number" id="recovery">％
-        <button type="submit">保存する</button>
+      <div class="flex h-8">
+        <p class="w-24">回収率</p>
+        <input type="number" id="recovery" class="border border-black bg-gray-100 p-1">％
+        <button type="submit" class="text-white accsent_color p-1 ml-4">保存する</button>
       </div>
     </form>
-    <div class="result">
-      <div class="year">
+    <div class="flex">
+      <div class="w-3/12">
         <table>
           <tr>
-            <th>年間回収率</th>
+            <th class="w-40">年間回収率</th>
             <th></th>
           </tr>
           <tr>
@@ -67,10 +40,10 @@
           </tr>
         </table>
       </div>
-      <div class="month">
+      <div class="w-3/12">
         <table>
           <tr>
-            <th>月間回収率</th>
+            <th class="w-40">月間回収率</th>
             <th></th>
           </tr>
           @foreach($datas as $data)
@@ -88,10 +61,4 @@
       </div>
     </div>
   </main>
-  <footer>
-
-  </footer>
-  <script src="{{asset('js/calc.js')}}"></script>
-</body>
-
-</html>
+</x-main>

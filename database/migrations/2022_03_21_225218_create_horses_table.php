@@ -18,7 +18,7 @@ class CreateHorsesTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('date');
             $table->string('race');
-            $table->string('name');
+            $table->string('horse_name');
             $table->integer('mark');
             $table->string('opinion')->nullable();
             $table->timestamps();

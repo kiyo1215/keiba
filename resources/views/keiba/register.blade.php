@@ -6,15 +6,19 @@
   <title>競馬SNS(仮)</title>
   <link rel="stylesheet" href="{{asset('css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('css/color.css')}}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv=" X-UA-Compatible" content="ie=edge">
 </head>
 
 <body>
-  <header>
+  <header class="main_color">
     <h1>競馬SNS(仮)</h1>
   </header>
-  <main>
+  <main class="base_color">
+    <x-auth-session-status :status="session('status')" />
+
+    <x-auth-validation-errors :errors="$errors" />
     <div class="login">
       <h2>アカウント作成</h2>
       <form method="POST" action="{{ route('register') }}">
@@ -25,7 +29,7 @@
         <div><input type="password" name="password_confirmation" placeholder="確認パスワード"></div>
         <button type="submit">新規作成</button>
       </form>
-      <a href="#">ログイン</a>
+      <a href="{{ route('login') }}">ログイン</a>
     </div>
   </main>
 

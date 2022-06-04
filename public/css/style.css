@@ -10,32 +10,36 @@ header h1 {
 
 main {
   position: relative;
-  height: 85vh;
+  height: 90vh;
   background-color: #eee;
 }
 
 .login {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
+  margin-top: 20px;
   transform: translateY(-50%) translateX(-50%);
-  background-color: lightblue;
-  padding: 30px;
+  background-color: white;
+  padding: 50px;
 }
 .login h2 {
   font-size: 25px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .login input{
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 250px;
   height: 20px;
 }
 .login button {
   display: block;
   margin: 0 auto 20px;
-  background-color: white;
+  font-size: 20px;
+  padding: 15px 20px;
+  background-color: rgb(40, 40, 40);
+  color: white;
   cursor: pointer;
 }
 

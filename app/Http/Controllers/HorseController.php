@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\HorseRequest;
 use App\Models\User;
 use App\Models\Horse;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class HorseController extends Controller
 {
     public function home(){
-        $my_datas = Horse::where('user_id', Auth::id())->latest('date')->get();
-        $all_datas = Horse::latest('date')->get();
-        return view('keiba.main', compact('my_datas', 'all_datas'));
+        return view('keiba.top');
     }
     public function predict(){
         return view('keiba.predict');
     }
-    public function predictCreate(Request $request){
+    public function predictCreate(HorseRequest $request){
         Horse::create([
             'user_id' => Auth::id(),
             'date' => $request->date,
@@ -30,32 +30,32 @@ class HorseController extends Controller
         return back()->with('msg', '登録しました');
     }
     public function history(){
-        $datas = Horse::where('user_id', Auth::id())->latest('date')->get();
+        $datas = Horse::where('user_id', Auth::id())->latest('date')->paginate(10);;
         return view('keiba.history', compact('datas'));
     }
     public function search_histrory(Request $request){
         if(empty($request->date)){
-            $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->get();
+            $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
             if(empty($request->race)){
-                $datas = Horse::where('user_id', Auth::id())->where('name', 'like', "%$request->name%")->latest('date')->get();
+                $datas = Horse::where('user_id', Auth::id())->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
                 if(empty($request->name)){
-                    $datas = Horse::where('user_id', Auth::id())->latest('date')->get();
+                    $datas = Horse::where('user_id', Auth::id())->latest('date')->paginate(10);
                 }
             }
             if(empty($request->name)){
-                $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->latest('date')->get();
+                $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         if(!empty($request->date)){
-            $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->get();
+            $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
             if(empty($request->race)){
-                $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->get();
+                $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
                 if(empty($request->name)){
-                    $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->latest('date')->get();
+                    $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->latest('date')->paginate(10);
                 }
             }
             if(empty($request->name)){
-                $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->get();
+                $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         return view('keiba.history', compact('datas'));
@@ -76,36 +76,69 @@ class HorseController extends Controller
         return view('keiba.history', compact('datas'));
     }
     public function look(){
-        $datas = Horse::all();
-        return view('keiba.look', compact('datas'));
+        $horses = Horse::paginate(10);
+        return view('keiba.look', compact('horses'));
+    }
+    public function show($id){
+        $datas = Horse::find($id);
+        $likes = Like::where('user_id', Auth::id())->where('horse_id', $id)->first();
+        return view('keiba.show', compact('datas', 'likes'));
     }
     public function search_look(Request $request)
     {
         if (empty($request->date)) {
-            $datas = Horse::where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->get();
+            $datas = Horse::where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
             if (empty($request->race)) {
-                $datas = Horse::where('name', 'like', "%$request->name%")->latest('date')->get();
+                $datas = Horse::where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
                 if (empty($request->name)) {
-                    $datas = Horse::latest('date')->get();
+                    $datas = Horse::latest('date')->paginate(10);
                 }
             }
             if (empty($request->name)) {
-                $datas = Horse::where('race', 'like', "%$request->race%")->latest('date')->get();
+                $datas = Horse::where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         if (!empty($request->date)) {
-            $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->get();
+            $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
             if (empty($request->race)) {
-                $datas = Horse::where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->get();
+                $datas = Horse::where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
                 if (empty($request->name)) {
-                    $datas = Horse::where('date', $request->date)->latest('date')->get();
+                    $datas = Horse::where('date', $request->date)->latest('date')->paginate(10);
                 }
             }
             if (empty($request->name)) {
-                $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->get();
+                $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         return view('keiba.look', compact('datas'));
+    }
+    public function search_history(Request $request)
+    {
+        if (empty($request->date)) {
+            $datas = Horse::where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            if (empty($request->race)) {
+                $datas = Horse::where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+                if (empty($request->name)) {
+                    $datas = Horse::latest('date')->paginate(10);
+                }
+            }
+            if (empty($request->name)) {
+                $datas = Horse::where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
+            }
+        }
+        if (!empty($request->date)) {
+            $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            if (empty($request->race)) {
+                $datas = Horse::where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+                if (empty($request->name)) {
+                    $datas = Horse::where('date', $request->date)->latest('date')->paginate(10);
+                }
+            }
+            if (empty($request->name)) {
+                $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
+            }
+        }
+        return view('keiba.history', compact('datas'));
     }
     
 }

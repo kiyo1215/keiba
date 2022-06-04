@@ -8,6 +8,9 @@ module.exports = {
     ],
 
     theme: {
+        variants: {
+      bg: ['hover'] // hover時のopacityを許可する
+    },
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
