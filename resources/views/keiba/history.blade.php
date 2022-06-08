@@ -5,7 +5,7 @@
       @csrf
       レース日<input type="date" name="date" class="border border-black mr-8 ml-4 bg-gray-100">
       レース名<input type="text" name="race" class="border border-black p-0.5 mr-8 ml-4 bg-gray-100">
-      馬名<input type="text" name="name" class="border border-black p-0.5 mr-8 ml-4 bg-gray-100">
+      馬名<input type="text" name="horse_name" class="border border-black p-0.5 mr-8 ml-4 bg-gray-100">
       <button type="submit" class="border border-black accsent_color text-white p-1 rounded-md">検索</button>
     </form>
     <table class="w-full border-b border-black">
@@ -37,7 +37,7 @@
           消
           @endif
         </td>
-        <td>{{ $data->name }}</td>
+        <td>{{ $data->horse_name }}</td>
         <td class="truncate max-w-sm hover:whitespace-normal hover:text-clip hover:overflow-visible">{{ $data->opinion }}</td>
         <td>
           <a href="/look/show/{{$data->id}}" class="block mx-4 accsent_color text-white rounded-md leading-7 text-center w-20">詳細</a>
@@ -48,6 +48,6 @@
       </tr>
       @endforeach
     </table>
-    {{$datas->links()}}
+    <div class="my-10">{{$datas->links()}}</div>
   </main>
 </x-main>

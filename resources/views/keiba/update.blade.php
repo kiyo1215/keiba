@@ -10,7 +10,7 @@
         <p class="w-28">レース名</p><input type="text" name="race" value="{{$datas->race}}" class="border-2 border-black">
       </div>
       <div class="flex mb-3.5">
-        <p class="w-28">馬名</p><input type="text" name="name" value="{{$datas->name}}" class="border-2 border-black">
+        <p class="w-28">馬名</p><input type="text" name="horse_name" value="{{$datas->horse_name}}" class="border-2 border-black">
       </div>
       <div class="flex mb-3.5">
         <p class="w-28">印</p>

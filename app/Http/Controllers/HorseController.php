@@ -23,7 +23,7 @@ class HorseController extends Controller
             'user_id' => Auth::id(),
             'date' => $request->date,
             'race' => $request->race,
-            'name' => $request->name,
+            'horse_name' => $request->horse_name,
             'mark' => $request->mark,
             'opinion' => $request->opinion,
         ]);
@@ -35,26 +35,26 @@ class HorseController extends Controller
     }
     public function search_histrory(Request $request){
         if(empty($request->date)){
-            $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
             if(empty($request->race)){
-                $datas = Horse::where('user_id', Auth::id())->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
-                if(empty($request->name)){
+                $datas = Horse::where('user_id', Auth::id())->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
+                if(empty($request->horse_name)){
                     $datas = Horse::where('user_id', Auth::id())->latest('date')->paginate(10);
                 }
             }
-            if(empty($request->name)){
+            if(empty($request->horse_name)){
                 $datas = Horse::where('user_id', Auth::id())->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         if(!empty($request->date)){
-            $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
             if(empty($request->race)){
-                $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
-                if(empty($request->name)){
+                $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
+                if(empty($request->horse_name)){
                     $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->latest('date')->paginate(10);
                 }
             }
-            if(empty($request->name)){
+            if(empty($request->horse_name)){
                 $datas = Horse::where('user_id', Auth::id())->where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
@@ -68,15 +68,16 @@ class HorseController extends Controller
         Horse::where('id', $request->id)->update([
             'date' => $request->date,
             'race' => $request->race,
-            'name' => $request->name,
+            'horse_name' => $request->horse_name,
             'mark' => $request->mark,
             'opinion' => $request->opinion
         ]);
-        $datas = Horse::where('user_id', Auth::id())->get();
+        $datas = Horse::where('user_id', Auth::id())->paginate(10);
         return view('keiba.history', compact('datas'));
+        // return view('keiba.history');
     }
     public function look(){
-        $horses = Horse::paginate(10);
+        $horses = Horse::latest('date')->paginate(10);
         return view('keiba.look', compact('horses'));
     }
     public function show($id){
@@ -87,54 +88,54 @@ class HorseController extends Controller
     public function search_look(Request $request)
     {
         if (empty($request->date)) {
-            $datas = Horse::where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            $horses = Horse::where('race', 'like', "%$request->race%")->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
             if (empty($request->race)) {
-                $datas = Horse::where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
-                if (empty($request->name)) {
-                    $datas = Horse::latest('date')->paginate(10);
+                $horses = Horse::where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
+                if (empty($request->horse_name)) {
+                    $horses = Horse::latest('date')->paginate(10);
                 }
             }
-            if (empty($request->name)) {
-                $datas = Horse::where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
+            if (empty($request->horse_name)) {
+                $horses = Horse::where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         if (!empty($request->date)) {
-            $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            $horses = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
             if (empty($request->race)) {
-                $datas = Horse::where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
-                if (empty($request->name)) {
-                    $datas = Horse::where('date', $request->date)->latest('date')->paginate(10);
+                $horses = Horse::where('date', $request->date)->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
+                if (empty($request->horse_name)) {
+                    $horses = Horse::where('date', $request->date)->latest('date')->paginate(10);
                 }
             }
-            if (empty($request->name)) {
-                $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
+            if (empty($request->horse_name)) {
+                $horses = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
-        return view('keiba.look', compact('datas'));
+        return view('keiba.look', compact('horses'));
     }
     public function search_history(Request $request)
     {
         if (empty($request->date)) {
-            $datas = Horse::where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            $datas = Horse::where('race', 'like', "%$request->race%")->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
             if (empty($request->race)) {
-                $datas = Horse::where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
-                if (empty($request->name)) {
+                $datas = Horse::where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
+                if (empty($request->horse_name)) {
                     $datas = Horse::latest('date')->paginate(10);
                 }
             }
-            if (empty($request->name)) {
+            if (empty($request->horse_name)) {
                 $datas = Horse::where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }
         if (!empty($request->date)) {
-            $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
+            $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
             if (empty($request->race)) {
-                $datas = Horse::where('date', $request->date)->where('name', 'like', "%$request->name%")->latest('date')->paginate(10);
-                if (empty($request->name)) {
+                $datas = Horse::where('date', $request->date)->where('horse_name', 'like', "%$request->horse_name%")->latest('date')->paginate(10);
+                if (empty($request->horse_name)) {
                     $datas = Horse::where('date', $request->date)->latest('date')->paginate(10);
                 }
             }
-            if (empty($request->name)) {
+            if (empty($request->horse_name)) {
                 $datas = Horse::where('date', $request->date)->where('race', 'like', "%$request->race%")->latest('date')->paginate(10);
             }
         }

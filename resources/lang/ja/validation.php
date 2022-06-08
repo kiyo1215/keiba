@@ -30,7 +30,7 @@ return [
         'string'  => ':attributeは、:min文字から:max文字にしてください。',
     ],
     'boolean'              => ':attributeには、\'true\'か\'false\'を指定してください。',
-    'confirmed'            => ':attributeと:attribute確認が一致しません。',
+    'confirmed'            => ':attributeと確認:attributeが一致しません。',
     'current_password'     => 'The password is incorrect.',
     'date'                 => ':attributeは、正しい日付ではありません。',
     'date_equals'          => ':attributeは:dateに等しい日付でなければなりません。',

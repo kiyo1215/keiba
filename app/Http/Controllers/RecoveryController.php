@@ -12,18 +12,21 @@ class RecoveryController extends Controller
     public function achievement()
     {
         $today = Carbon::today()->format('Y年m月');
+
         $years = Recovery::where('user_id', Auth::id())
                 ->select('year')
                 ->selectRaw('SUM(bet) as bet')
                 ->selectRaw('SUM(refund) as refund')
                 ->groupBy('year')
-                ->latest('year')->get();
+                ->latest('year')->paginate(10);
+
         $datas = Recovery::where('user_id', Auth::id())
                 ->select('date')
                 ->selectRaw('SUM(bet) as bet')
                 ->selectRaw('SUM(refund) as refund')
                 ->groupBy('date')
-                ->latest('date')->get();
+                ->latest('date')->paginate(10);
+
         return view('keiba.achievement', compact('datas', 'years', 'today'));
     }
     public function achieveCreate(Request $request)

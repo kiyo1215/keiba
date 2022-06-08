@@ -16,9 +16,10 @@
     <h1>競馬予想記録</h1>
   </header>
   <main class="base_color">
-    <x-auth-session-status :status="session('status')" />
-
-    <x-auth-validation-errors :errors="$errors" />
+  <div class="error_msg">
+    <x-auth-session-status :status="session('status')"/>
+    <x-auth-validation-errors :errors="$errors"/>
+  </div>
     <div class="login">
       <h2>ログイン</h2>
       <form method="POST" action="/login">

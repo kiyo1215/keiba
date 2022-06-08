@@ -14,7 +14,7 @@ class Horse extends Model
         'user_id',
         'date',
         'race',
-        'name',
+        'horse_name',
         'mark',
         'opinion'
     ];

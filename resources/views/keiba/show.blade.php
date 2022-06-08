@@ -18,7 +18,7 @@
     @endif
   </p>
   <p>{{$datas->opinion}}</p>
-  <p class="fas">&#xf004いいね：{{ $datas->likes->count() }}</p>
+  <p class="fas my-10">&#xf004いいね：{{ $datas->likes->count() }}</p>
   @if($likes)
   <form action="{{route('notlike', $datas)}}" method="post">
     @csrf

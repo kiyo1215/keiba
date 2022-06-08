@@ -21,7 +21,7 @@
       </div>
     </form>
     <div class="flex">
-      <div class="w-3/12">
+      <div class="w-6/12">
         <table>
           <tr>
             <th class="w-40">年間回収率</th>
@@ -39,8 +39,9 @@
             @endforeach
           </tr>
         </table>
+        <div class="my-10">{{$years->links()}}</div>
       </div>
-      <div class="w-3/12">
+      <div class="w-6/12">
         <table>
           <tr>
             <th class="w-40">月間回収率</th>
@@ -58,6 +59,7 @@
           </tr>
           @endforeach
         </table>
+        <div class="my-10">{{$datas->links()}}</div>
       </div>
     </div>
   </main>

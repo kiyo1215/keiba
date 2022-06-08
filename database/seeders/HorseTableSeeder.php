@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Recovery;
+use App\Models\Horse;
 
-class RecoveryTableSeeder extends Seeder
+class HorseTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class RecoveryTableSeeder extends Seeder
      */
     public function run()
     {
-        Recovery::factory()->count(30)->create(); 
+        Horse::factory()->count(30)->create(); 
     }
 }
