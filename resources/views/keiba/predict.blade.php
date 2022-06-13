@@ -7,7 +7,7 @@
         {{session('msg')}}
       </div>
       @endif
-      <form method="post" action="{{ route('predictCreate')}}" class="w-6/12 mx-auto">
+      <form method="post" action="{{ route('predictCreate')}}" class="w-full sm:w-9/12 mx-auto">
         @csrf
         <div class="text-red-500 text-center">
           @if($errors->has('date'))

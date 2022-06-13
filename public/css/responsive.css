@@ -1,0 +1,75 @@
+#menu_button {
+  z-index: 20;
+}
+
+#menu_button span {
+  display: block;
+  height: 4px;
+  width: 40px;
+  background-color: rgb(40, 40, 40);
+  transition: 0.3s;
+}
+
+#menu_button span:nth-child(2) {
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+#menu {
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  top: 0;
+  right: -40%;
+  background-color: white;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+#menu p {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+#menu ul {
+  padding-top: 50px;
+}
+
+#menu li {
+  list-style: none;
+  margin: 20px 0;
+}
+
+#menu li a,
+#menu li button {
+  display: block;
+  font-size: 20px;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 25px;
+  background-color: #eaea7f;
+}
+
+.action {
+  transform: translateX(-100%);
+  transition: 0.3s;
+}
+
+#menu_button .line_1 {
+  transform: translateY(2px) rotate(45deg);
+  transition: 0.3s;
+}
+
+#menu_button .line_2 {
+  display: none;
+  transition: 0.3s;
+}
+
+#menu_button .line_3 {
+  transform: translateY(-2px) rotate(-45deg);
+  transition: 0.3s;
+}
